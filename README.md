@@ -1,70 +1,47 @@
-# Getting Started with Create React App
+# when we use form tag the form will refresh after click the button 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# when we use any eventhandler on button then it will not refresh the page 
+# 1. we can use the preventDefault for this will not refresh the page.
 
-## Available Scripts
+# 2. In form tag we will use the type- submit and the it will submit the form thats it  
 
-In the project directory, you can run:
+<!-- --------------------------------------------How to make form----------------------------------------------------->
 
-### `npm start`
+# steps to create form
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+# 1: first of all create one components and create input tag for taking input the input from user
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+# 2:then write one function for button where we will use the prevenDefault function for submitting the form it will not refresh the value like form tag.
 
-### `npm test`
+ ex:- const handleSubmit=(e)=>{
+    e.preventDefault()
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+    // and now we can do console.log we can we the form is submitted or not
+    console.log("submitted)
 
-### `npm run build`
+ }
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+ and the use this handlesubmit to the button tag <button onclick={hand}>Register</button>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+ # 3: After this we have to import the usestate usestate updates the value that we enter in the input field  
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+ import {useState} from "react"
 
-### `npm run eject`
+ const [formvalue,setformvalue]= useState({
+    name:""        // here we are giving the value is empty
+ })
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+# 4: After importing the usestate we have use this the setformvalue in our inputfield 
+ for this we have to create one function
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+ ex:- const handlevent=()=>{
+    setformvalue((prevformvalue)=>(...prevform,[e.target.name]:e.target.value))    it will change the value
+ }
+  from here above we have use value and name
+ <input type="text", placeholder="name" name="name" value={formvalue.name}/>  
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+ //---------------------------------------------error handling--------------------------------------------------
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+ 
