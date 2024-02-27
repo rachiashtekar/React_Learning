@@ -1,37 +1,49 @@
+
 import { useState } from "react";
 
 function EnqueryForm() {
   const [formvalue, setformvalue] = useState({
-    name: "",
+    name: ""
   });
 
-  const handleRegister = (e) => {
-    e.preventDefault();
+  const [errors, seterrors] = useState({
+    name: null,
+  });
+
+  const handleclickhere = (event) => {
+    event.preventDefault();
     console.log("submitted");
-    console.log(formvalue.name);
+    console.log("name", formvalue.name);
+
+    if (!formvalue.name) {
+      seterrors({ name: "Please enter the name" });
+      return;
+    }
+
+    if (formvalue.name.length < 5) {
+      seterrors({ name: "Name should be more than 5 characters" });
+      return;
+    }
+
+    // Clearing errors when the validation passes
+    seterrors({ name: "" });
   };
 
   const handleEvent = (e) => {
-    setformvalue((preformvalue) => ({
-      ...preformvalue,
-      [e.target.name]: e.target.value,
-    }));
+    // Clear the error for the specific field when typing
+    seterrors({ ...errors, name: "" });
+
+    setformvalue((prevformvalue) => ({ ...prevformvalue, name: e.target.value }));
   };
 
   return (
-    <div className="enquery-form">
-      <input
-        type="text "
-        placeholder="name"
-        className="form"
-        name="name"
-        onChange={handleEvent}
-        value={formvalue.name}
-      />
-
+    <div>
+      <input type="text" placeholder="name" name="name" value={formvalue.name} onChange={handleEvent} />
+      <br />
+      <p style={{ color: "red", fontSize: "10px" }}>{errors.name}</p>
+      <button onClick={handleclickhere}>Click here</button>
       <br />
 
-      <button onClick={handleRegister}>Register</button>
     </div>
   );
 }
